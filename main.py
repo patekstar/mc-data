@@ -25,7 +25,7 @@ def reset_dashboard():
         st.session_state[f'max_{col}'] = max(df[col])
 
 # Setup
-st.title('"blue[Mastercard Data Visualization]')
+st.title(':blue[Mastercard Data Visualization]')
 st.button('Reset Dashboard', on_click=reset_dashboard)  # Add the reset button
 
 dataset_selection = st.selectbox('Select Dataset', ['MASTERCARD SINGAPORE', 'MASTERCARD MALAYSIA'])
