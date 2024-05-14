@@ -70,7 +70,8 @@ filters = create_sidebar_filters(df, columns)
 
 filtered_df = df.copy()
 for col, (min_val, max_val) in filters.items():
-    filtered_df = filtered_df[(filtered_df[col] >= min_val) & (filtered_df[col] <= max_val)]
+    filtered_df = filtered_df[(filtered_df[col].between(min_val, max_val)) | (filtered_df[col] == 0)]
+    # filtered_df = filtered_df[(filtered_df[col] >= min_val) & (filtered_df[col] <= max_val)]
 
 # Create map data
 map_data = filtered_df[['latitude', 'longitude']]
