@@ -7,8 +7,8 @@ import streamlit as st
 import os
 
 # Load CSV files
-sgp_df = pd.read_csv(f'{os.getcwd()}/sgp_mastercard.csv')
-mys_df = pd.read_csv(f'{os.getcwd()}/mys_mastercard.csv')
+sgp_df = pd.read_csv(f'{os.getcwd()}/data/sgp_mastercard.csv')
+mys_df = pd.read_csv(f'{os.getcwd()}/data/mys_mastercard.csv')
 
 def create_sidebar_filters(df, columns):
     filters = {}
