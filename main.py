@@ -13,7 +13,7 @@ mys_df = pd.read_csv(f'{os.getcwd()}/data/mys_mastercard.csv')
 def create_sidebar_filters(df, columns):
     filters = {}
     for col in columns:
-        selected = st.sidebar.checkbox(f'Include {col}', value=False)
+        selected = st.sidebar.checkbox(f'{col}', value=False)
         if selected:
             min_val = st.sidebar.number_input(f'Minimum {col}', min_value=min(df[col]), max_value=max(df[col]), value=min(df[col]), key=f'min_{col}')
             max_val = st.sidebar.number_input(f'Maximum {col}', min_value=min(df[col]), max_value=max(df[col]), value=max(df[col]), key=f'max_{col}')
