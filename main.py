@@ -28,28 +28,21 @@ def reset_dashboard():
         st.session_state[f'{col}_checkbox'] = False
 
 # Setup
-st.title(':blue[Mastercard Data Visualization]')
-st.button('Reset Dashboard', on_click=reset_dashboard)
+st.title(':blue[Mastercard Dashboard]')
+st.button('Reset Dashboard', on_click=reset_dashboard) 
 
-dataset_selection = st.selectbox('Select Dataset', ['MASTERCARD SINGAPORE', 'MASTERCARD MALAYSIA'])
+dataset_selection = st.selectbox('Select Dataset', ['Singapore', 'Malaysia'])
 
-if dataset_selection == 'MASTERCARD SINGAPORE':
+if dataset_selection == 'Singapore':
     df = sgp_df
     columns = ['latitude', 'longitude', 'travel_agency_hs', 'hotels_online_hs', 'hotels_offline_hs', 'grocery_stores_fb', 'electronics_appliances_hs']
     color_map = {
-        'travel_agency_hs': ('#78c9e3', 'Light Blue > Travel Agency'),  # Light blue
+        'travel_agency_hs': ('#78c9e3', 'Light Blue > Travel Agency'),
         'hotels_online_hs': ('#00FF00', 'Green > Hotels Online'),
         'hotels_offline_hs': ('#FFA500', 'Orange > Hotels Offline'),
         'grocery_stores_fb': ('#800080', 'Purple > Grocery Stores'),
         'electronics_appliances_hs': ('#FF0000', 'Red > Electronics & Appliances')
     }
-    #     color_map = {
-    #     'travel_agency_hs': ('#ADD8E6', 'Light Blue > Travel Agency'),  # Light blue
-    #     'hotels_online_hs': ('#90EE90', 'Light Green > Hotels Online'),  # Light green
-    #     'hotels_offline_hs': ('#FFDAB9', 'Peach Puff > Hotels Offline'),  # Peach puff
-    #     'grocery_stores_fb': ('#E6E6FA', 'Lavender > Grocery Stores'),  # Lavender
-    #     'electronics_appliances_hs': ('#FAD7A0', 'Light Coral > Electronics & Appliances')  # Light coral
-    # }
 else:
     df = mys_df
     columns = ['latitude', 'longitude', 'beauty_medical_hs', 'sporting_goods_fb', 'restaurants_hs', 'apparel_fb']
@@ -71,7 +64,6 @@ filters = create_sidebar_filters(df, columns)
 filtered_df = df.copy()
 for col, (min_val, max_val) in filters.items():
     filtered_df = filtered_df[(filtered_df[col].between(min_val, max_val)) | (filtered_df[col] == 0)]
-    # filtered_df = filtered_df[(filtered_df[col] >= min_val) & (filtered_df[col] <= max_val)]
 
 # Create map data
 map_data = filtered_df[['latitude', 'longitude']]
